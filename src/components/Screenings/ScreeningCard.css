@@ -1,0 +1,59 @@
+.screening-card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.screening-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 20em;
+  width: 90vw;
+  border: 5px solid #e9c46a;
+  margin: 1em;
+  border-radius: 15px;
+}
+
+.screening-card h3{
+  background-color: #e9c46a;
+  padding: 0.5em;
+}
+
+.screening-card h3 a {
+  color:black;
+  text-decoration: none;
+}
+
+.screening-card-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.screening-card-details {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 2;
+  gap: 10px;
+  padding: 0.3em;
+}
+
+.screening-card-details * {
+  text-align: center;
+}
+
+.screening-card-info img {
+  width: min(130px, 30vw);
+  object-fit: cover;
+  height: auto;
+  border-radius: 0 0 10px 0;
+}
+
+.screening-card-book {
+  text-decoration: none;
+  background-color: #264653;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px
+}
