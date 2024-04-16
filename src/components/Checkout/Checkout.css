@@ -1,0 +1,55 @@
+.booking-main {
+  background-color: white;
+  margin: 1em;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-main h2 {
+    background-color: #e9c46a;
+    margin: 1em 0 0.5em ;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+}
+
+.booking-main > * {
+    margin: 0.5em;
+}
+
+.booking-main > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#checkout {
+    background-color: #264653;
+    color: white;
+    border: 2px solid white;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-size:1em;
+}
+
+#checkout:disabled {
+    background-color: grey;
+}
+
+#checkout:hover:enabled {
+    border: 2px solid #2a9d8f;
+}
+
+#checkout-pwyw {
+    display: flex;
+    flex-direction: column;
+}
+
+#checkout-pwyw > * {
+    margin: 0.2em
+}
+
+#cost-input {
+    width: 11em;
+}
