@@ -19,9 +19,30 @@
 }
 
 #staff-login input:focus {
-    outline: solid #e76f51;
+  outline: solid #e76f51;
 }
 
 #staff-login p {
-    color: red;
+  color: red;
+}
+
+#staff-options {
+  list-style: none;
+}
+
+#staff-options li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#staff-options a {
+  color: white;
+  background-color: #264653;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  width: 3em;
+  text-align: center;
+  font-size: 1em;
 }

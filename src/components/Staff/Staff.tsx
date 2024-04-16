@@ -1,5 +1,6 @@
 import React from "react";
 import StaffLogin from "./StaffLogin";
+import StaffMenu from "./StaffMenu";
 
 function Staff({
   jwt,
@@ -10,7 +11,7 @@ function Staff({
 }) {
   return (
     <main>
-      {jwt ? <p>TBD</p>: <StaffLogin setJwt={setJwt}/>}
+      {jwt ? <StaffMenu setJwt={setJwt} /> : <StaffLogin setJwt={setJwt} />}
     </main>
   );
 }
