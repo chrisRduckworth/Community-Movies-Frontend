@@ -23,7 +23,7 @@ function ScreeningCard({ screening }: { screening: ScreeningOverview }) {
             <p>{dayjs(screening.date).format("DD/MM/YY HH:mm")}</p>
             <p>{screening.is_pay_what_you_want ? "Pay what you want" : cost}</p>
             <div className="screening-card-info-location">
-              {location.map((line, i) => (
+              {location.map((line, i, arr) => (
                 <p key={line}>
                   {line}
                   {i === location.length - 1 ? "" : ","}
@@ -31,11 +31,7 @@ function ScreeningCard({ screening }: { screening: ScreeningOverview }) {
               ))}
             </div>
             <Link
-              to={
-                screening.is_pay_what_you_want
-                  ? `/screenings/${screening.screening_id}`
-                  : `/screenings/${screening.screening_id}/book`
-              }
+              to={`/screenings/${screening.screening_id}/book`}
               className="screening-card-book"
             >
               Book
