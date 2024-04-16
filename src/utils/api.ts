@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ScreeningDetail, ScreeningOverview } from "../interfaces";
+import { ScreeningDetail, ScreeningOverview, BookingDetail } from "../interfaces";
 
 const screeningsApi = axios.create({
   baseURL: "http://localhost:9090/api",
@@ -34,4 +34,16 @@ export async function postCheckout(
     charge,
   });
   return session_url;
+}
+
+export async function getBooking(
+  screening_id: string | undefined,
+  booking_id: string | undefined
+): Promise<BookingDetail> {
+  const {
+    data: { booking },
+  } = await screeningsApi.get(
+    `/screenings/${screening_id}/bookings/${booking_id}`
+  );
+  return booking
 }

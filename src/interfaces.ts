@@ -24,3 +24,15 @@ export interface ScreeningDetail {
   cost: number;
   is_pay_what_you_want: boolean;
 }
+
+export interface BookingDetail {
+  booking_id: string;
+  email: string;
+  charge: number;
+  screening: {
+    date: string;
+    location: string;
+    title: string;
+    year: number;
+  };
+}
