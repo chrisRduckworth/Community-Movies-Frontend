@@ -11,10 +11,12 @@ function Screenings() {
 
   return (
     <main>
-      <h2>Screenings</h2>
+      <div className="screenings-main">
+        <h2>Screenings</h2>
         {screenings.map((screening) => (
           <ScreeningCard key={screening.screening_id} screening={screening} />
         ))}
+      </div>
     </main>
   );
 }

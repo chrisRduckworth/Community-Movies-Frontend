@@ -1,3 +1,9 @@
+.screenings-main {
+  background-color: white;
+  margin: 1em;
+  border-radius: 15px;
+}
+
 .screening-card-container {
   display: flex;
   justify-content: center;
@@ -14,13 +20,13 @@
   border-radius: 15px;
 }
 
-.screening-card h3{
+.screening-card h3 {
   background-color: #e9c46a;
   padding: 0.5em;
 }
 
 .screening-card h3 a {
-  color:black;
+  color: black;
   text-decoration: none;
 }
 
@@ -30,7 +36,7 @@
 }
 
 .screening-card-details {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -55,5 +61,5 @@
   background-color: #264653;
   color: white;
   padding: 0.5em 1em;
-  border-radius: 5px
+  border-radius: 5px;
 }
