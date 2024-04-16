@@ -1,0 +1,27 @@
+#staff-login {
+  margin: 5em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#staff-login * {
+  margin: 0.5em 0;
+}
+
+#staff-login input {
+  background-color: #e6e6e6;
+  border: none;
+  height: 1.5em;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+#staff-login input:focus {
+    outline: solid #e76f51;
+}
+
+#staff-login p {
+    color: red;
+}

@@ -1,5 +1,9 @@
 import axios from "axios";
-import { ScreeningDetail, ScreeningOverview, BookingDetail } from "../interfaces";
+import {
+  ScreeningDetail,
+  ScreeningOverview,
+  BookingDetail,
+} from "../interfaces";
 
 const screeningsApi = axios.create({
   baseURL: "http://localhost:9090/api",
@@ -45,5 +49,12 @@ export async function getBooking(
   } = await screeningsApi.get(
     `/screenings/${screening_id}/bookings/${booking_id}`
   );
-  return booking
+  return booking;
+}
+
+export async function postLogin(password: string): Promise<string> {
+  const {
+    data: { token },
+  } = await screeningsApi.post("/staff/login", { password });
+  return token;
 }

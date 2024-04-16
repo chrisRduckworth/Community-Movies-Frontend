@@ -6,8 +6,12 @@ import Footer from "./components/Footer/Footer";
 import Screening from "./components/Screening/Screening";
 import Checkout from "./components/Checkout/Checkout";
 import Booking from "./components/Booking/Booking";
+import Staff from "./components/Staff/Staff";
+import { useState } from "react";
 
 function App() {
+  const [jwt, setJwt] = useState("")
+
   return (
     <>
       <Header></Header>
@@ -20,6 +24,7 @@ function App() {
           path="/screenings/:screening_id/book/:booking_id"
           element={<Booking />}
         />
+        <Route path="/staff" element={<Staff jwt={jwt} setJwt={setJwt}/>}/>
       </Routes>
       <Footer></Footer>
     </>
