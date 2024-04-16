@@ -14,3 +14,14 @@ export async function getScreenings() {
     console.log(e);
   }
 }
+
+export async function getScreening(screening_id: string | undefined) {
+  try {
+    const {
+      data: { screening },
+    } = await newsApi.get(`/screenings/${screening_id}`);
+    return screening;
+  } catch (e) {
+    console.log(e);
+  }
+}
