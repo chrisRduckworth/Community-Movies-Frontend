@@ -1,5 +1,4 @@
 import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field";
-import { useState } from "react";
 
 function Cost({
   cost,
@@ -10,43 +9,38 @@ function Cost({
   setCost: React.Dispatch<React.SetStateAction<number>>;
   is_pay_what_you_want: boolean;
 }) {
-  const [value, setValue] = useState<string | number>(0);
-
   const handleValueChange: CurrencyInputProps["onValueChange"] = (
     value,
     name,
     values
   ) => {
-    if (value) {
-      setCost(Math.floor(parseFloat(value) * 100));
-      setValue(value);
+    if (values && values.float) {
+      setCost(Math.floor(values.float * 100));
+    } else {
+      setCost(0);
     }
   };
 
   return is_pay_what_you_want ? (
-    <>
-      <label htmlFor="cost-input">
-        <h4>Cost</h4>
-      </label>
+    <div id="checkout-pwyw">
+      <label htmlFor="cost-input">Pay what you want:</label>
       <CurrencyInput
         id="cost-input"
-        value={value}
-        onValueChange={handleValueChange}
-        placeholder="0.00"
+        placeholder="Enter optional fee"
         prefix={"£"}
         step={1}
+        allowNegativeValue={false}
+        onValueChange={handleValueChange}
+        fixedDecimalLength={2}
       />
-    </>
+    </div>
   ) : (
-    <>
-      <h4>Cost</h4>
-      <p>
-        {(cost / 100).toLocaleString("en-UK", {
-          style: "currency",
-          currency: "GBP",
-        })}
-      </p>
-    </>
+    <p>
+      {(cost / 100).toLocaleString("en-UK", {
+        style: "currency",
+        currency: "GBP",
+      })}
+    </p>
   );
 }
 
