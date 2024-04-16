@@ -4,6 +4,10 @@
   border-radius: 15px;
 }
 
+.screenings-main h2 {
+  padding:1em 1em 0 1em;
+}
+
 .screening-card-container {
   display: flex;
   justify-content: center;
