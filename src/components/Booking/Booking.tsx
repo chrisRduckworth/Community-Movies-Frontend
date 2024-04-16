@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { getBooking } from "../../utils/api";
 import { BookingDetail } from "../../interfaces";
 import dayjs from "dayjs";
+import { AddToCalendarButton } from "add-to-calendar-button-react";
 import "./Booking.css";
 
 function Booking() {
@@ -55,6 +56,18 @@ function Booking() {
                 <h4>Ticket reference:</h4>
                 <p>{booking.booking_id}</p>
               </div>
+              <AddToCalendarButton
+                name={`${booking.screening.title} Screening`}
+                options={["Google", "Apple", "iCal", "Microsoft365", "MicrosoftTeams", "Outlook.com", "Yahoo"]}
+                location={booking.screening.location}
+                startDate={dayjs(booking.screening.date).format("YYYY-MM-DD")}
+                endDate={dayjs(booking.screening.date).format("YYYY-MM-DD")}
+                startTime={dayjs(booking.screening.date).format("HH:mm")}
+                endTime={dayjs(booking.screening.date)
+                  .add(3, "hour")
+                  .format("HH:mm")}
+                buttonStyle="round"
+              ></AddToCalendarButton>
             </>
           )}
         </div>
