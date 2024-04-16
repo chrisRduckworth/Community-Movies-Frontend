@@ -13,17 +13,17 @@ function ScreeningCard({ screening }: { screening: ScreeningOverview }) {
   return (
     <div className="screening-card-container">
       <section className="screening-card">
-        <h3>
-          <Link to={`/screenings/${screening.screening_id}`}>
+        <Link to={`/screenings/${screening.screening_id}`}>
+          <h3>
             {screening.film.title} ({screening.film.year})
-          </Link>
-        </h3>
+          </h3>
+        </Link>
         <div className="screening-card-info">
           <div className="screening-card-details">
             <p>{dayjs(screening.date).format("DD/MM/YY HH:mm")}</p>
             <p>{screening.is_pay_what_you_want ? "Pay what you want" : cost}</p>
             <div className="screening-card-info-location">
-              {location.map((line, i, arr) => (
+              {location.map((line, i) => (
                 <p key={line}>
                   {line}
                   {i === location.length - 1 ? "" : ","}
