@@ -31,14 +31,12 @@
   padding: 0.5em 1em;
   border-radius: 5px;
   font-size: 1em;
+  cursor: pointer;
 }
 
 #checkout:disabled {
-  background-color: grey;
-}
-
-#checkout:hover:enabled {
-  border: 2px solid #2a9d8f;
+  background-color: #5e6e74;
+  cursor: default;
 }
 
 #checkout-pwyw {
