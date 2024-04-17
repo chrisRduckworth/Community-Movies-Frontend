@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import "./NewScreening.css";
 import { useState } from "react";
-import { NewScreeningForm } from "../../interfaces";
+import { NewScreeningForm, PostScreening } from "../../interfaces";
 import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field";
 import FilmSearch from "./FilmSearch";
+import { postScreening } from "../../utils/api";
+import Success from "./Success";
 
 function NewScreening({ jwt }: { jwt: string }) {
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [screening, setScreening] = useState<PostScreening | null>(null);
 
   const [form, setForm] = useState<NewScreeningForm>({
     tmdb_id: 0,
@@ -62,9 +66,26 @@ function NewScreening({ jwt }: { jwt: string }) {
     });
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault()
-  }
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    if (form.tmdb_id === 0) {
+      setError("Please search and choose a film");
+    } else if (form.isPayWhatYouWant && form.cost > 0) {
+      setError(
+        "Cost cannot be greater than 0 when Pay What You Want is selected"
+      );
+    } else {
+      try {
+        const screeningData = await postScreening(form, jwt);
+        setScreening(screeningData);
+      } catch {
+        setError("Something went wrong");
+      }
+    }
+    setIsSubmitting(false);
+  };
 
   return (
     <main>

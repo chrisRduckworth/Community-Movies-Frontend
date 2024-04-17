@@ -4,7 +4,10 @@ import {
   ScreeningOverview,
   BookingDetail,
   Result,
+  NewScreeningForm,
+  PostScreening,
 } from "../interfaces";
+import dayjs from "dayjs";
 
 const screeningsApi = axios.create({
   baseURL: "http://localhost:9090/api",
@@ -67,4 +70,26 @@ export async function getFilms(title: string, jwt: string): Promise<Result[]> {
     headers: { Authorization: `Bearer ${jwt}` },
   });
   return films;
+}
+
+export async function postScreening(
+  form: NewScreeningForm,
+  jwt: string
+): Promise<PostScreening> {
+  const {
+    data: { screening },
+  } = await screeningsApi.post(
+    "/screenings",
+    {
+      tmdb_id: form.tmdb_id,
+      location: `${form.streetAddress}, ${form.city}, ${form.postCode}`,
+      date: dayjs(form.date).format(),
+      cost: form.cost,
+      is_pay_what_you_want: form.isPayWhatYouWant,
+    },
+    {
+      headers: { Authorization: `Bearer ${jwt}` },
+    }
+  );
+  return screening;
 }

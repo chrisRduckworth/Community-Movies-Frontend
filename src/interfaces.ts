@@ -54,3 +54,19 @@ export interface Result {
   year: number;
   poster_url: string;
 }
+
+export interface PostScreening {
+  screening_id: number;
+  location: string;
+  date: string;
+  cost: number;
+  is_pay_what_you_want: boolean;
+  film: {
+    tmdb_id: number;
+    title: string;
+    year: number;
+    poster_url: string;
+    backdrop_url: string;
+    description: string;
+  };
+}
