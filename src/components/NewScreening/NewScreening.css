@@ -129,3 +129,17 @@
   font-size: 1em;
   cursor: pointer;
 }
+
+#create-screening-success p {
+  margin: 0.3em;
+}
+
+#create-screening-success a {
+  text-decoration: none;
+}
+
+#test {
+  margin: 0.5em 0 0;
+  display: flex;
+  justify-content: center;
+}

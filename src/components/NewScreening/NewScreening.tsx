@@ -93,80 +93,86 @@ function NewScreening({ jwt }: { jwt: string }) {
         Return to staff page
       </Link>
       <div className="main-screening">
-        <h2>New Screening</h2>
-        <div id="form-container">
-          <form id="new-screening-form" onSubmit={handleSubmit}>
-            <FilmSearch form={form} setForm={setForm} jwt={jwt} />
-            <label htmlFor="date">Date</label>
-            <input
-              type="datetime-local"
-              name="date"
-              id="date"
-              value={form.date}
-              onChange={handleFormChange("date")}
-              required={true}
-            />
-            <label htmlFor="street-address">Street address</label>
-            <input
-              type="text"
-              name="streetAddress"
-              id="street-address"
-              placeholder="221B Baker Street"
-              value={form.streetAddress}
-              onChange={handleFormChange("streetAddress")}
-              required={true}
-            />
-            <label htmlFor="post-code">Post code</label>
-            <input
-              type="text"
-              name="postCode"
-              id="post-code"
-              placeholder="NW1 6XE"
-              value={form.postCode}
-              onChange={handleFormChange("postCode")}
-              required={true}
-            />
-            <label htmlFor="city">City</label>
-            <input
-              type="text"
-              name="city"
-              id="city"
-              placeholder="London"
-              value={form.city}
-              onChange={handleFormChange("city")}
-              required={true}
-            />
-
-            <label htmlFor="cost" id="cost-label">
-              Cost
-            </label>
-            <CurrencyInput
-              id="cost"
-              prefix={"£"}
-              step={1}
-              placeholder="£0.00"
-              allowNegativeValue={false}
-              value={form.value}
-              onValueChange={handleCostChange}
-              required={true}
-            />
-            <div id="pwyw-container">
-              <label htmlFor="pwyw">Pay what you want?</label>
-              <input
-                type="checkbox"
-                name="isPayWhatYouWant"
-                id="pwyw"
-                onChange={handleFormChange("isPayWhatYouWant")}
-                checked={form.isPayWhatYouWant}
-              />
+        {screening === null ? (
+          <>
+            <h2>New Screening</h2>
+            <div id="form-container">
+              <form id="new-screening-form" onSubmit={handleSubmit}>
+                <FilmSearch form={form} setForm={setForm} jwt={jwt} />
+                <label htmlFor="date">Date</label>
+                <input
+                  type="datetime-local"
+                  name="date"
+                  id="date"
+                  value={form.date}
+                  onChange={handleFormChange("date")}
+                  required={true}
+                />
+                <label htmlFor="street-address">Street address</label>
+                <input
+                  type="text"
+                  name="streetAddress"
+                  id="street-address"
+                  placeholder="221B Baker Street"
+                  value={form.streetAddress}
+                  onChange={handleFormChange("streetAddress")}
+                  required={true}
+                />
+                <label htmlFor="city">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  placeholder="London"
+                  value={form.city}
+                  onChange={handleFormChange("city")}
+                  required={true}
+                />
+                <label htmlFor="post-code">Post code</label>
+                <input
+                  type="text"
+                  name="postCode"
+                  id="post-code"
+                  placeholder="NW1 6XE"
+                  value={form.postCode}
+                  onChange={handleFormChange("postCode")}
+                  required={true}
+                />
+                <label htmlFor="cost" id="cost-label">
+                  Cost
+                </label>
+                <CurrencyInput
+                  id="cost"
+                  prefix={"£"}
+                  step={1}
+                  placeholder="£0.00"
+                  allowNegativeValue={false}
+                  value={form.value}
+                  onValueChange={handleCostChange}
+                  required={!form.isPayWhatYouWant}
+                />
+                <div id="pwyw-container">
+                  <label htmlFor="pwyw">Pay what you want?</label>
+                  <input
+                    type="checkbox"
+                    name="isPayWhatYouWant"
+                    id="pwyw"
+                    onChange={handleFormChange("isPayWhatYouWant")}
+                    checked={form.isPayWhatYouWant}
+                  />
+                </div>
+                <div id="button-container">
+                  <button id="checkout" type="submit" disabled={isSubmitting}>
+                    Create Screening
+                  </button>
+                </div>
+                <p>{error}</p>
+              </form>
             </div>
-            <div id="button-container">
-              <button id="checkout" type="submit">
-                Create Screening
-              </button>
-            </div>
-          </form>
-        </div>
+          </>
+        ) : (
+          <Success screening={screening} />
+        )}
       </div>
     </main>
   );
