@@ -3,6 +3,7 @@ import {
   ScreeningDetail,
   ScreeningOverview,
   BookingDetail,
+  Result,
 } from "../interfaces";
 
 const screeningsApi = axios.create({
@@ -57,4 +58,13 @@ export async function postLogin(password: string): Promise<string> {
     data: { token },
   } = await screeningsApi.post("/staff/login", { password });
   return token;
+}
+
+export async function getFilms(title: string, jwt: string): Promise<Result[]> {
+  const {
+    data: { films },
+  } = await screeningsApi.get(`/films?title=${title}`, {
+    headers: { Authorization: `Bearer ${jwt}` },
+  });
+  return films;
 }

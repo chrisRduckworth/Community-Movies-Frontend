@@ -3,10 +3,13 @@ import "./NewScreening.css";
 import { useState } from "react";
 import { NewScreeningForm } from "../../interfaces";
 import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field";
+import FilmSearch from "./FilmSearch";
 
 function NewScreening({ jwt }: { jwt: string }) {
+  const [error, setError] = useState("");
+
   const [form, setForm] = useState<NewScreeningForm>({
-    title: "",
+    tmdb_id: 0,
     date: "",
     streetAddress: "",
     postCode: "",
@@ -72,15 +75,7 @@ function NewScreening({ jwt }: { jwt: string }) {
         <h2>New Screening</h2>
         <div id="form-container">
           <form id="new-screening-form" onSubmit={handleSubmit}>
-            <label htmlFor="title">Film</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Title"
-              value={form.title}
-              onChange={handleFormChange("title")}
-            />
+            <FilmSearch form={form} setForm={setForm} jwt={jwt} />
             <label htmlFor="date">Date</label>
             <input
               type="datetime-local"
@@ -88,6 +83,7 @@ function NewScreening({ jwt }: { jwt: string }) {
               id="date"
               value={form.date}
               onChange={handleFormChange("date")}
+              required={true}
             />
             <label htmlFor="street-address">Street address</label>
             <input
@@ -97,6 +93,7 @@ function NewScreening({ jwt }: { jwt: string }) {
               placeholder="221B Baker Street"
               value={form.streetAddress}
               onChange={handleFormChange("streetAddress")}
+              required={true}
             />
             <label htmlFor="post-code">Post code</label>
             <input
@@ -106,6 +103,7 @@ function NewScreening({ jwt }: { jwt: string }) {
               placeholder="NW1 6XE"
               value={form.postCode}
               onChange={handleFormChange("postCode")}
+              required={true}
             />
             <label htmlFor="city">City</label>
             <input
@@ -115,6 +113,7 @@ function NewScreening({ jwt }: { jwt: string }) {
               placeholder="London"
               value={form.city}
               onChange={handleFormChange("city")}
+              required={true}
             />
 
             <label htmlFor="cost" id="cost-label">
@@ -126,9 +125,9 @@ function NewScreening({ jwt }: { jwt: string }) {
               step={1}
               placeholder="£0.00"
               allowNegativeValue={false}
-              fixedDecimalLength={2}
               value={form.value}
               onValueChange={handleCostChange}
+              required={true}
             />
             <div id="pwyw-container">
               <label htmlFor="pwyw">Pay what you want?</label>
@@ -141,7 +140,9 @@ function NewScreening({ jwt }: { jwt: string }) {
               />
             </div>
             <div id="button-container">
-              <button id="checkout" type="submit">Create Screening</button>
+              <button id="checkout" type="submit">
+                Create Screening
+              </button>
             </div>
           </form>
         </div>

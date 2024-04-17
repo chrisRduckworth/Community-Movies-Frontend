@@ -1,12 +1,13 @@
 #new-screening-form {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 20em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 20em;
+  width: 100%;
 }
 
 #new-screening-form * {
-    max-width: 30em;
+  max-width: 30em;
 }
 
 #new-screening-form > input {
@@ -19,25 +20,112 @@
 }
 
 #form-container {
-    display:flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #new-screening-form > label {
-    margin: 1em 0.5em 0.2em;
+  margin: 1em 0.5em 0.2em;
 }
 
 #pwyw-container {
-    margin: 1em 0.5em 0.2em;
-    display: flex;
+  margin: 1em 0.5em 0.2em;
+  display: flex;
 }
 
 #pwyw-container input {
-    margin: 0 1em;
+  margin: 0 1em;
 }
 
 #button-container {
-    display: flex;
-    justify-content: center;
-    margin: 1em;
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+.film-container {
+  display: flex;
+  align-items: center;
+}
+
+.film-container button {
+  color: white;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.film-container input {
+  background-color: #e6e6e6;
+  border: none;
+  height: 1.5em;
+  padding: 0.5em;
+  border-radius: 10px 0 0 10px;
+  flex-grow: 2;
+}
+
+#new-screening-form p {
+  text-align: center;
+  margin: 0.5em 0 0;
+  color: red;
+}
+
+.button-on-end {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: stretch;
+  height: 100%;
+  justify-content: center;
+}
+
+.button-on-end button {
+  width: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#result-button:disabled {
+  background-color: #5e6e74;
+  cursor: default;
+}
+
+#cancel {
+  background-color: #e76f51;
+}
+
+#search {
+  background-color: #264653;
+}
+
+#search:disabled {
+  background-color: #5e6e74;
+  cursor: default;
+}
+
+#results-container {
+  display: flex;
+  align-items: center;
+}
+
+#results-container select {
+  border-radius: 10px 0 0 10px;
+  border: none;
+  padding: 0.5em;
+  height: 2.5em;
+  max-width: 272px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #e6e6e6;
+}
+
+#results-container button {
+  color: white;
+  background-color: #264653;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  font-size: 1em;
+  cursor: pointer;
 }

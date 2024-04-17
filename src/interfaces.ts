@@ -38,7 +38,7 @@ export interface BookingDetail {
 }
 
 export interface NewScreeningForm {
-  title: string;
+  tmdb_id: number;
   date: string;
   streetAddress: "";
   postCode: "";
@@ -46,4 +46,11 @@ export interface NewScreeningForm {
   isPayWhatYouWant: boolean;
   cost: number;
   value: string;
+}
+
+export interface Result {
+  tmdb_id: number;
+  title: string;
+  year: number;
+  poster_url: string;
 }
