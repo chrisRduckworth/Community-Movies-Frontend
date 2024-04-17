@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field";
 
 function Cost({
@@ -9,15 +10,19 @@ function Cost({
   setCost: React.Dispatch<React.SetStateAction<number>>;
   is_pay_what_you_want: boolean;
 }) {
+  const [value, setValue] = useState("");
+
   const handleValueChange: CurrencyInputProps["onValueChange"] = (
     value,
-    name,
-    values
+    _name,
+    _values
   ) => {
-    if (values && values.float) {
-      setCost(Math.floor(values.float * 100));
-    } else {
+    if (!value) {
+      setValue("");
       setCost(0);
+    } else {
+      setValue(value);
+      setCost(Math.floor(parseFloat(value) * 100));
     }
   };
 
@@ -30,6 +35,7 @@ function Cost({
         prefix={"£"}
         step={1}
         allowNegativeValue={false}
+        value={value}
         onValueChange={handleValueChange}
         fixedDecimalLength={2}
       />
