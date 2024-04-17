@@ -1,0 +1,43 @@
+#new-screening-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 20em;
+}
+
+#new-screening-form * {
+    max-width: 30em;
+}
+
+#new-screening-form > input {
+  background-color: #e6e6e6;
+  border: none;
+  height: 1.5em;
+  padding: 0.5em;
+  border-radius: 10px;
+  display: block;
+}
+
+#form-container {
+    display:flex;
+    justify-content: center;
+}
+
+#new-screening-form > label {
+    margin: 1em 0.5em 0.2em;
+}
+
+#pwyw-container {
+    margin: 1em 0.5em 0.2em;
+    display: flex;
+}
+
+#pwyw-container input {
+    margin: 0 1em;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}

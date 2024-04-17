@@ -36,3 +36,14 @@ export interface BookingDetail {
     year: number;
   };
 }
+
+export interface NewScreeningForm {
+  title: string;
+  date: string;
+  streetAddress: "";
+  postCode: "";
+  city: "";
+  isPayWhatYouWant: boolean;
+  cost: number;
+  value: string;
+}
