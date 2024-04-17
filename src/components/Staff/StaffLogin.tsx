@@ -20,12 +20,20 @@ function StaffLogin({
       const token = await postLogin(password);
       setJwt(token);
     } catch (e: any) {
-      const {
-        response: {
-          data: { msg },
-        },
-      } = e;
-      setError(msg === "Password does not match" || password === "" ? "Password does not match" : "Something went wrong")
+
+      let msg;
+
+      try {
+        msg = e.response.data.msg;
+      } catch {
+        msg = "failed";
+      }
+      
+      setError(
+        msg === "Password does not match" || password === ""
+          ? "Password does not match"
+          : "Something went wrong"
+      );
     }
     setIsLoading(false);
   };
