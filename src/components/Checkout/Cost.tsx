@@ -37,7 +37,6 @@ function Cost({
         allowNegativeValue={false}
         value={value}
         onValueChange={handleValueChange}
-        fixedDecimalLength={2}
       />
     </div>
   ) : (
