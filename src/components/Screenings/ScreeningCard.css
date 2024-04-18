@@ -2,10 +2,11 @@
   background-color: white;
   margin: 1em;
   border-radius: 15px;
+  min-height: 50vh;
 }
 
 .screenings-main h2 {
-  padding:1em 1em 0 1em;
+  padding: 1em 1em 0 1em;
 }
 
 .screening-card-container {
@@ -66,4 +67,19 @@
   color: white;
   padding: 0.5em 1em;
   border-radius: 5px;
+}
+
+#screenings-title {
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  margin: 1em;
+}
+
+.error {
+  text-align: center;
+  margin: 1em;
+  color: crimson;
 }

@@ -17,10 +17,14 @@ const screeningsApi = axios.create({
 });
 
 export async function getScreenings(): Promise<ScreeningOverview[]> {
-  const {
-    data: { screenings },
-  } = await screeningsApi.get("/screenings");
-  return screenings;
+  try {
+    const {
+      data: { screenings },
+    } = await screeningsApi.get("/screenings");
+    return screenings;
+  } catch {
+    return Promise.reject();
+  }
 }
 
 export async function getScreening(
