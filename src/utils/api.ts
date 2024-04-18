@@ -30,10 +30,16 @@ export async function getScreenings(): Promise<ScreeningOverview[]> {
 export async function getScreening(
   screening_id: string | undefined
 ): Promise<ScreeningDetail> {
-  const {
-    data: { screening },
-  } = await screeningsApi.get(`/screenings/${screening_id}`);
-  return screening;
+  try {
+    const {
+      data: { screening },
+    } = await screeningsApi.get(`/screenings/${screening_id}`);
+    return screening;
+  } catch (e: any) {
+    // for when the server doesn't send a response eg if it's down
+    const res = e.response ? e : { response: { data: { msg: "uh oh" } } };
+    return Promise.reject(res);
+  }
 }
 
 export async function postCheckout(

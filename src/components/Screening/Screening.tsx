@@ -4,26 +4,49 @@ import { getScreening } from "../../utils/api";
 import { ScreeningDetail } from "../../interfaces";
 import "./Screening.css";
 import dayjs from "dayjs";
+import ErrorComp from "./Error";
 
 function Screening() {
   const { screening_id } = useParams();
   const [screening, setScreening] = useState<null | ScreeningDetail>(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    getScreening(screening_id).then((screeningData) => {
-      setScreening(screeningData);
-    });
+    setError("");
+    setScreening(null);
+    getScreening(screening_id)
+      .then((screeningData) => {
+        setScreening(screeningData);
+      })
+      .catch(
+        ({
+          response: {
+            data: { msg },
+          },
+        }) => {
+          console.log("in catch")
+          if (msg === "Screening not found") {
+            setError(msg);
+          } else {
+            setError("Something went wrong");
+          }
+        }
+      );
   }, []);
 
-  return screening === null ? (
-    <p>Loading</p>
-  ) : (
-    <>
-      <main>
-        <Link to="/screenings" className="return-link">
-          Return to screenings
-        </Link>
-        <div className="main-screening">
+  if (error) {
+    return <ErrorComp error={error} />;
+  }
+
+  return (
+    <main>
+      <Link to="/screenings" className="return-link">
+        Return to screenings
+      </Link>
+      <div className="main-screening">
+        {screening === null ? (
+          <h3 className="loading">Loading</h3>
+        ) : (
           <div id="screening">
             <img
               src={screening.film!.backdrop_url}
@@ -64,9 +87,9 @@ function Screening() {
               </Link>
             </div>
           </div>
-        </div>
-      </main>
-    </>
+        )}
+      </div>
+    </main>
   );
 }
 
