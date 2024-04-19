@@ -10,7 +10,7 @@ import {
 import dayjs from "dayjs";
 
 const screeningsApi = axios.create({
-  baseURL: "http://localhost:9090/api",
+  baseURL: "https://community-movies-backend.adaptable.app/api",
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
