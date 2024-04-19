@@ -1,30 +1,14 @@
-# React + TypeScript + Vite
+# Community Movies
+This is the frontend repo for the community events project. The live version can be found at https://tr-community-movies.netlify.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Requirements
+ - Node.js version 20.5.0 
+Earlier versions may work but have not been tested.
 
-Currently, two official plugins are available:
+## Installation
+To run this on a local machine, set up the backend api repo found at https://github.com/chrisRduckworth/Community-Movies-Backend. Then
+ 1. Change the line 13 of `src/utils/api.ts` from `baseURL: "https://community-movies-backend.adaptable.app/api"` to `baseURL: "http://localhost:9090/api"` (or a different URL if not running on the defaults)
+ 2. Run `npm install` to install dependencies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ ## Hosting locally
+ Run `npm run dev` to start the server. To try out the website, visit the URL shown in the terminal (by default, `http://localhost:5173`)
