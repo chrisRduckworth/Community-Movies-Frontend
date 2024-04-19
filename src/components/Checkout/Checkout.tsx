@@ -5,29 +5,46 @@ import { Link, useParams } from "react-router-dom";
 import { ScreeningDetail } from "../../interfaces";
 import Cost from "./Cost";
 import dayjs from "dayjs";
+import ErrorComp from "../Error";
 
 function Checkout() {
   const { screening_id } = useParams();
   const [screening, setScreening] = useState<null | ScreeningDetail>(null);
   const [cost, setCost] = useState(0);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsError(false);
+    setError("");
+    setIsLoading(true);
     if (!screening) {
       getScreening(screening_id)
         .then((screeningData) => {
           setScreening(screeningData);
+          setIsLoading(false);
         })
-        .catch(() => setIsError(true));
+        .catch(
+          ({
+            response: {
+              data: { msg },
+            },
+          }) => {
+            setIsLoading(false);
+            if (msg === "Screening not found") {
+              setError(msg);
+            } else {
+              setError("Something went wrong");
+            }
+          }
+        );
     } else {
       setCost(screening.cost);
+      setIsLoading(false);
     }
   }, [screening]);
 
   const handleCheckout: MouseEventHandler<HTMLButtonElement> = async (e) => {
-    setIsError(false);
+    setError("");
     setIsLoading(true);
     e.preventDefault();
     let url;
@@ -35,13 +52,13 @@ function Checkout() {
       url = await postCheckout(screening_id, cost);
       window.open(url, "_self");
     } catch (e) {
-      setIsError(true);
+      setError("Checkout failed");
     }
     setIsLoading(false);
   };
 
-  if (isError) {
-    return <p>Something went wrong</p>;
+  if (error && error !== "Checkout failed") {
+    return <ErrorComp error={error} />;
   }
 
   return (
@@ -51,7 +68,7 @@ function Checkout() {
       </Link>
       <div className="booking-main">
         {screening === null ? (
-          <p>Loading...</p>
+          <h3 className="loading">Loading...</h3>
         ) : (
           <>
             <h2>Booking Details</h2>
@@ -80,6 +97,9 @@ function Checkout() {
             <button onClick={handleCheckout} id="checkout" disabled={isLoading}>
               Checkout
             </button>
+            {error === "Checkout failed" && (
+              <p className="error">Something went wrong</p>
+            )}
           </>
         )}
       </div>
