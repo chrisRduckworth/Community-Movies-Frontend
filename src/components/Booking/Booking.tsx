@@ -9,12 +9,42 @@ import "./Booking.css";
 function Booking() {
   const { screening_id, booking_id } = useParams();
   const [booking, setBooking] = useState<BookingDetail | null>(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    getBooking(screening_id, booking_id).then((bookingData: BookingDetail) => {
-      setBooking(bookingData);
-    });
+    setBooking(null);
+    setError("");
+    getBooking(screening_id, booking_id)
+      .then((bookingData: BookingDetail) => {
+        setBooking(bookingData);
+      })
+      .catch(
+        ({
+          response: {
+            data: { msg },
+          },
+        }) => {
+          setError(msg);
+        }
+      );
   }, []);
+
+  if (error) {
+    return (
+      <main>
+        <Link to={`/screenings`} className="return-link">
+          Return to screenings
+        </Link>
+        <div className="screenings-main">
+          <div className="booking-main"></div>
+          <p className="error">
+            {error === "No booking found" ? error : "Something went wrong"}
+          </p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main>
       <Link to={`/screenings`} className="return-link">
@@ -23,7 +53,7 @@ function Booking() {
       <div className="screenings-main">
         <div className="booking-main" id="booking-details">
           {booking === null ? (
-            <p>Loading...</p>
+            <h3 className="loading">Loading...</h3>
           ) : (
             <>
               <div>
@@ -58,7 +88,15 @@ function Booking() {
               </div>
               <AddToCalendarButton
                 name={`${booking.screening.title} Screening`}
-                options={["Google", "Apple", "iCal", "Microsoft365", "MicrosoftTeams", "Outlook.com", "Yahoo"]}
+                options={[
+                  "Google",
+                  "Apple",
+                  "iCal",
+                  "Microsoft365",
+                  "MicrosoftTeams",
+                  "Outlook.com",
+                  "Yahoo",
+                ]}
                 location={booking.screening.location}
                 startDate={dayjs(booking.screening.date).format("YYYY-MM-DD")}
                 endDate={dayjs(booking.screening.date).format("YYYY-MM-DD")}

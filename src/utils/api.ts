@@ -58,12 +58,17 @@ export async function getBooking(
   screening_id: string | undefined,
   booking_id: string | undefined
 ): Promise<BookingDetail> {
-  const {
-    data: { booking },
-  } = await screeningsApi.get(
-    `/screenings/${screening_id}/bookings/${booking_id}`
-  );
-  return booking;
+  try {
+    const {
+      data: { booking },
+    } = await screeningsApi.get(
+      `/screenings/${screening_id}/bookings/${booking_id}`
+    );
+    return booking;
+  } catch (e: any) {
+    const res = e.response ? e : { response: { data: { msg: "uh oh" } } };
+    return Promise.reject(res);
+  }
 }
 
 export async function postLogin(password: string): Promise<string> {
