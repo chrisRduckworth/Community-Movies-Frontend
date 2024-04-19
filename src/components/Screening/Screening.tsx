@@ -4,7 +4,7 @@ import { getScreening } from "../../utils/api";
 import { ScreeningDetail } from "../../interfaces";
 import "./Screening.css";
 import dayjs from "dayjs";
-import ErrorComp from "./Error";
+import ErrorComp from "../Error";
 
 function Screening() {
   const { screening_id } = useParams();
@@ -24,7 +24,6 @@ function Screening() {
             data: { msg },
           },
         }) => {
-          console.log("in catch")
           if (msg === "Screening not found") {
             setError(msg);
           } else {
